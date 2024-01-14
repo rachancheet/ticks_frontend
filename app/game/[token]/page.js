@@ -2,7 +2,7 @@
 import { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/navigation";
 
-export default function board({ params }) {
+export default function Board({ params }) {
   const [board, setboard] = useState(Array(9).fill(null));
   // const [winner, setwinner] = useState(null);
   const [turn, setturn] = useState(false);
