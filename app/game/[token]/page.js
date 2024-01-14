@@ -12,7 +12,7 @@ export default function board({ params }) {
   let user = "";
 
   const [socket, _] = useState(
-    new WebSocket("ws://172.31.222.190:8000/game/" + params.token)
+    new WebSocket("ws://api.rachancheet.me:8000/game/" + params.token)
   );
   useEffect(() => {
     console.log(user);
