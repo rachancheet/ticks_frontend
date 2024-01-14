@@ -50,7 +50,12 @@ export default function Home() {
       <div className="flex h-screen justify-center items-center">
         <div className="flex p-10 shrink-0 gap-8 align-center border-2 rounded-md border-[#e0f2fe]">
           <div className="flex flex-col gap-8 justify-center items-center">
-            <input type="text" ref={user} defaultValue={nam}></input>
+            <input
+              type="text"
+              className="text-black"
+              ref={user}
+              defaultValue={nam}
+            ></input>
             <button
               onClick={handleuser}
               class="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
@@ -59,7 +64,12 @@ export default function Home() {
             </button>
           </div>
           <div className="flex flex-col gap-8 justify-center items-center">
-            <input type="text" ref={token} placeholder="gametoken"></input>
+            <input
+              type="text"
+              className="text-black"
+              ref={token}
+              placeholder="gametoken"
+            ></input>
             <button
               onClick={handleuser}
               class="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
