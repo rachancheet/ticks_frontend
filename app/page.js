@@ -71,7 +71,7 @@ export default function Home() {
               placeholder="gametoken"
             ></input>
             <button
-              onClick={handleuser}
+              onClick={handlegame}
               class="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
             >
               Join Game
