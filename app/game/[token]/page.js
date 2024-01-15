@@ -12,7 +12,7 @@ export default function Board({ params }) {
   let user = "";
 
   const [socket, _] = useState(
-    new WebSocket("wss://15.235.162.175:80/ticks/game/" + params.token)
+    new WebSocket("wss://api.rachancheet.me/ticks/game/" + params.token)
   );
   useEffect(() => {
     console.log(user);
