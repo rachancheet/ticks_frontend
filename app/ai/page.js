@@ -1,79 +1,21 @@
 "use client";
 import { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/navigation";
+import { AI } from "@/app/ai/logic";
+import { checkifwon } from "@/app/ai/logic";
+import { checkifdraw } from "@/app/ai/logic";
 
 export default function Board({ params }) {
   const [board, setboard] = useState(Array(9).fill(""));
   // const [winner, setwinner] = useState(null);
-  const [turn, setturn] = useState(false);
-  const [data, setdata] = useState("Game token :" + params.token);
+  const [turn, setturn] = useState(true);
+  const [data, setdata] = useState(
+    "Game token :" + params.token + " , Play your move"
+  );
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [gamebutton, setgamebutton] = useState(false);
   const router = useRouter();
-  let user = "";
-
-  const [socket, _] = useState(
-    new WebSocket("ws://localhost:8000/ticks/game/" + params.token)
-  );
-  useEffect(() => {
-    console.log(user);
-    if (Object.is(parseInt(params.token), NaN)) {
-      router.push("/");
-    }
-  }, [router]);
-
-  useEffect(() => {
-    user = localStorage.getItem("user");
-    setturn(false);
-
-    socket.addEventListener("open", (event) => {
-      socket.send(user);
-    });
-
-    socket.addEventListener("message", (e) => {
-      console.log(e.data);
-      const op_code = e.data;
-      console.log(op_code.slice(0, 3));
-      if (op_code == "setup1") {
-        console.log("turn set to true");
-        setdata("Game token :" + params.token + " , Play your move");
-        setturn(true);
-        // forceUpdate();
-      } else if (op_code == "setup2") {
-        console.log("turn set to true");
-        setdata("wait for your turn");
-        // forceUpdate();
-      } else if (op_code.slice(0, 4) == "lost") {
-        setdata("lost against " + op_code.slice(5));
-        setturn(false);
-        setgamebutton(true);
-        forceUpdate();
-      } else if (op_code.slice(0, 3) == "won") {
-        setdata("won against " + op_code.slice(4));
-        setturn(false);
-        setgamebutton(true);
-        forceUpdate();
-      } else if (op_code.slice(0, 4) == "draw") {
-        setdata("Draw against " + op_code.slice(4));
-        setturn(false);
-        setgamebutton(true);
-        forceUpdate();
-      } else if (op_code == "close") {
-        router.push("/");
-      } else if (!Object.is(parseInt(e.data), NaN)) {
-        console.log(" parseint passed");
-        const chap = board;
-        chap[parseInt(op_code)] = "0";
-        setboard(chap);
-        setdata("Your turn");
-        setturn(true);
-        forceUpdate();
-      }
-    });
-  }, []);
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
-  function handlegamebutton() {
-    router.push("/game/" + Math.floor((Math.random() + 1) * 1000));
-  }
+  // let user = "";
 
   function handleclick(index) {
     if (!turn) {
@@ -86,10 +28,35 @@ export default function Board({ params }) {
     chap[index] = "X";
     console.log(chap);
     setboard(chap);
+    if (checkifwon(board, "X")) {
+      setdata("Won");
+      setturn(false);
+      return;
+    }
+    if (checkifdraw(board)) {
+      setdata("Draw");
+      setturn(false);
+      return;
+    }
     setdata("wait for your turn");
     setturn(false);
     forceUpdate();
-    socket.send(index);
+    let next = AI(board);
+    chap[next] = "0";
+    setboard(chap);
+    if (checkifwon(board, "0")) {
+      setdata("Lost");
+      setturn(false);
+      return;
+    }
+    if (checkifdraw(board)) {
+      setdata("Draw");
+      setturn(false);
+      return;
+    }
+    setdata("Your Turn");
+    setturn(true);
+    forceUpdate();
   }
   return (
     <div className="flex flex-col items-center mt-8">

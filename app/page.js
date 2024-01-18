@@ -30,7 +30,7 @@ export default function Home() {
       // console.log(user.current.value);
       localStorage.setItem("user", user.current.value);
       if (router) {
-        router.push("/game/" + Math.floor((Math.random() + 1) * 1000));
+        router.push("/game/" + Math.floor(Math.random() * 1000));
       }
     }
   }
