@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+// import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
@@ -76,6 +77,16 @@ export default function Home() {
             >
               Join Game
             </button>
+          </div>
+          <div className="flex flex-col gap-8 justify-center items-center">
+            <a href="/ai">
+              <button
+                type="button"
+                class="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
+              >
+                Play against Algo
+              </button>
+            </a>
           </div>
         </div>
       </div>

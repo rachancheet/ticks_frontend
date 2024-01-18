@@ -9,9 +9,7 @@ export default function Board({ params }) {
   const [board, setboard] = useState(Array(9).fill(""));
   // const [winner, setwinner] = useState(null);
   const [turn, setturn] = useState(true);
-  const [data, setdata] = useState(
-    "Game token :" + params.token + " , Play your move"
-  );
+  const [data, setdata] = useState(" Play your move");
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [gamebutton, setgamebutton] = useState(false);
   const router = useRouter();
