@@ -72,7 +72,7 @@ export default function Board({ params }) {
   }, []);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   function handlegamebutton() {
-    router.push("/game/" + params.token + 1);
+    router.push("/game/" + String(parseInt(params.token) + 1));
   }
 
   function handleclick(index) {
