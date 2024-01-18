@@ -112,13 +112,13 @@ export default function Board({ params }) {
           ))}
       </div>
       {gamebutton ? (
-        <div className="flex flex-col gap-8 justify-center items-center">
+        <div className="flex mt-7 flex-col gap-8 justify-center items-center">
           <button
             type="button"
             onClick={handlegamebutton}
             className="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
           >
-            New Game
+            Create New Game
           </button>
           <a href="/">
             <button
@@ -126,7 +126,7 @@ export default function Board({ params }) {
               // onClick={handlegamebutton}
               className="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
             >
-              Home
+              Join Game
             </button>
           </a>
         </div>

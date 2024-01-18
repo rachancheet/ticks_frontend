@@ -88,6 +88,9 @@ export function AI(board) {
   if (board[4] == "") {
     return 4;
   }
+  if (board[0] == "") {
+    return 0;
+  }
   let bestscore = -Infinity;
   let bestmove = null;
   for (let i = 0; i < 9; i++) {
