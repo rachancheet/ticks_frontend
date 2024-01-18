@@ -57,8 +57,8 @@ export default function Board({ params }) {
         setturn(false);
         setgamebutton(true);
         forceUpdate();
-      } else if (op_code == "close") {
-        router.push("/");
+      } else if (op_code == "error") {
+        router.push("/game/" + Math.floor(Math.random() * 1000));
       } else if (!Object.is(parseInt(e.data), NaN)) {
         console.log(" parseint passed");
         const chap = board;

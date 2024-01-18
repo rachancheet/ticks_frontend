@@ -50,7 +50,7 @@ export default function Home() {
     <div>
       <div className="flex h-screen justify-center items-center">
         <div className="flex p-10 shrink-0 gap-8 align-center border-2 rounded-md border-[#e0f2fe]">
-          <div className="flex flex-col gap-8 justify-center items-center">
+          <div className="flex flex-row lg-flex-col gap-8 justify-center items-center">
             <input
               type="text"
               className="text-black"
