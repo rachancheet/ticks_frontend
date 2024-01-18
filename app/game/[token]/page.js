@@ -72,7 +72,7 @@ export default function Board({ params }) {
   }, []);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   function handlegamebutton() {
-    router.push("/game/" + Math.floor((Math.random() + 1) * 1000));
+    router.push("/game/" + params.token + 1);
   }
 
   function handleclick(index) {
@@ -118,7 +118,7 @@ export default function Board({ params }) {
             onClick={handlegamebutton}
             className="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
           >
-            Create New Game
+            Re-Game
           </button>
           <a href="/">
             <button
@@ -126,7 +126,7 @@ export default function Board({ params }) {
               // onClick={handlegamebutton}
               className="py-2 px-4 shadow-md no-underline rounded-full bg-[#16a34a] text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2"
             >
-              Join Game
+              Home
             </button>
           </a>
         </div>
